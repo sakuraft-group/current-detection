@@ -1,6 +1,9 @@
 package team.xingyue.common.scheduled;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import team.xingyue.autoconfigure.CurrentProperties;
+import team.xingyue.util.HttpUtil;
 
 /**
  * @author HaoNan
@@ -10,7 +13,17 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RunnableTask implements Runnable {
+
+    @Autowired
+    CurrentProperties currentProperties;
+
+    @Override
     public void run() {
-        System.out.println("提醒打卡");
+        try {
+            System.out.println("定时任务已开启");
+            HttpUtil.get(currentProperties.getUrl(),null,0,0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

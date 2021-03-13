@@ -11,6 +11,8 @@ import team.xingyue.autoconfigure.CurrentProperties;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.concurrent.ScheduledFuture;
+
 /**
  * @author HaoNan
  * @version 1.0.0
@@ -18,7 +20,8 @@ import java.util.Date;
  * @createTime 2021年03月12日 19:26:00
  *Created by pudding on 2017-11-15.(动态定时器  用于打卡前10分钟推送消息)（!闹钟）
  */
-@Component
+//@Component
+@Deprecated
 public class DynamicScheduledTask implements SchedulingConfigurer {
 
     @Resource
@@ -27,9 +30,18 @@ public class DynamicScheduledTask implements SchedulingConfigurer {
     @Resource
     RunnableTask runnableTask;
 
+
+    /**
+     * 在ScheduledFuture中有一个cancel可以停止定时任务。
+     */
+    private ScheduledFuture<?> future;
+
+    @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+
         taskRegistrar.addTriggerTask(runnableTask,new Trigger() {
 
+            @Override
             public Date nextExecutionTime(TriggerContext triggerContext) {
                 //设置下次定时器
 
