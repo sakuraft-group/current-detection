@@ -1,5 +1,6 @@
 package team.xingyue.common.config;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import team.xingyue.autoconfigure.CurrentProperties;
@@ -13,4 +14,6 @@ import team.xingyue.autoconfigure.CurrentProperties;
 @Configuration
 @EnableConfigurationProperties(CurrentProperties.class)
 public class CurrentConfig {
+
+
 }

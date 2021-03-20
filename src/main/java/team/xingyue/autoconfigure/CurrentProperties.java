@@ -1,6 +1,9 @@
 package team.xingyue.autoconfigure;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 /**
  * @author HaoNan
@@ -13,6 +16,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 )
 public class CurrentProperties {
 
+    private  String uuid= UUID.randomUUID().toString();
+
     /**
      * 请求的url
      */
@@ -23,25 +28,6 @@ public class CurrentProperties {
      */
     private String expression;
 
-    /**
-     * 是否开启反向监测
-     */
-    private Boolean reverse;
-
-    /**
-     * 分组
-     */
-    private String grouping;
-
-    /**
-     * 是否携带本机id
-     */
-    private Boolean ip;
-
-    /**
-     * 是否携带服务器配置
-     */
-    private Boolean configuration;
 
     /**
      * 携带message备注消息
@@ -49,14 +35,45 @@ public class CurrentProperties {
     private String message;
 
     /**
+     * 分组
+     */
+    private String grouping;
+
+    /**
+     * 是否开启反向监测
+     */
+    private boolean reverse=false;
+
+    /**
+     * 是否携带本机id
+     */
+    private boolean ip=true;
+
+    /**
+     * 是否携带服务器配置
+     */
+    private boolean configuration=false;
+
+
+    /**
      * 数据库监测
      */
-    private String databaseDetection;
+    private boolean databaseDetection=false;
 
     /**
      * redis监测
      */
-    private String redisDetection;
+    private boolean redisDetection=false;
+
+
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getUrl() {
         return url;
@@ -74,12 +91,12 @@ public class CurrentProperties {
         this.expression = expression;
     }
 
-    public Boolean getReverse() {
-        return reverse;
+    public String getMessage() {
+        return message;
     }
 
-    public void setReverse(Boolean reverse) {
-        this.reverse = reverse;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getGrouping() {
@@ -90,43 +107,43 @@ public class CurrentProperties {
         this.grouping = grouping;
     }
 
-    public Boolean getIp() {
+    public boolean isReverse() {
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
+    }
+
+    public boolean isIp() {
         return ip;
     }
 
-    public void setIp(Boolean ip) {
+    public void setIp(boolean ip) {
         this.ip = ip;
     }
 
-    public Boolean getConfiguration() {
+    public boolean isConfiguration() {
         return configuration;
     }
 
-    public void setConfiguration(Boolean configuration) {
+    public void setConfiguration(boolean configuration) {
         this.configuration = configuration;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDatabaseDetection() {
+    public boolean isDatabaseDetection() {
         return databaseDetection;
     }
 
-    public void setDatabaseDetection(String databaseDetection) {
+    public void setDatabaseDetection(boolean databaseDetection) {
         this.databaseDetection = databaseDetection;
     }
 
-    public String getRedisDetection() {
+    public boolean isRedisDetection() {
         return redisDetection;
     }
 
-    public void setRedisDetection(String redisDetection) {
+    public void setRedisDetection(boolean redisDetection) {
         this.redisDetection = redisDetection;
     }
 }
